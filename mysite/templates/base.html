@@ -1,0 +1,41 @@
+ <!doctype html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>{% block title %} Новости со всего мира {% endblock %}</title>
+  </head>
+  <body>
+
+  {% include 'inc/_nav.html' %}
+
+  <div class="container mt-3">
+    <h1>{{ title }}</h1>
+    <div class="row">
+      <div class="col-md-4">
+      {% block sitebar %} SITEBAR {% endblock %}     <!-- Значения по умолчанию-->
+      </div>
+      <div class="col-md-8">
+      {% block content %} CONTENT {% endblock %}     <!-- Значения по умолчанию-->
+      </div>
+    </div>
+  </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}         <!-- Объявление, что будет использован шаблон base.html -->
+
+{% block title %}
+{{ news_item.title }} :: {{ block.super }}
+{% endblock %}
+
+
+<!-- Переопределение блоков content и sitebar  для конкретной страницы-->
+{% block sitebar %}
+{% include 'inc/_sitebar.html' %}    <!-- Подключение списка категорий-->
+{% endblock %}
+
+{% block content %}
+
+      <div class="card mb-3">
+        <div class="card-header">
+          Категория <a href="{{ object.category.get_absolute_url }}">{{ object.category }}</a>
+        </div>
+   <div class="card-body">
+       {% if item.photo %}
+       <img src="{{ object.photo.url }}" alt="" widht="350" class="float-left mr-3"/>
+       {% else %}
+        <img src="https://picsum.photos/id/870/200/300?grayscale&blur=2" alt="" widht="350" class="float-left mr-3"/>
+       {% endif %}
+         <h5 class="card-title">{{ object.title }}</h5>
+         <p class="card-text">{{ object.content }}</p>
+  </div>
+  <div class="card-footer text-muted">
+    {{ object.created_at|date:"Y-m-d" }}
+  </div>
+      </div>
+{% endblock %}
+<!-- конец переопределения-->

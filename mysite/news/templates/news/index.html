@@ -1,0 +1,69 @@
+{% extends 'base.html' %}         <!-- Объявление, что будет использован шаблон base.html -->
+
+{% block title %}
+{{ title }} :: {{ block.super }}
+{% endblock %}
+
+
+<!-- Переопределение блоков content и sitebar  для конкретной страницы-->
+{% block sitebar %}
+{% include 'inc/_sitebar.html' %}    <!-- Подключение списка категорий-->
+{% endblock %}
+
+{% block content %}
+
+      {% for item in news %}
+
+      <div class="card mb-3">
+        <div class="card-header">
+          Категория <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+        </div>
+   <div class="card-body">
+     <div class="media">
+       {% if item.photo %}
+       <img src="{{ item.photo.url }}" alt=""/>
+       {% else %}
+        <img src="https://picsum.photos/id/870/200/300?grayscale&blur=2"/>
+       {% endif %}
+       <div class="media-body">
+         <h5 class="card-title">{{ item.title }}</h5>
+         <p class="card-text">{{ item.content }}</p>
+         <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+       </div>
+     </div>
+
+  </div>
+  <div class="card-footer text-muted">
+    {{ item.created_at|date:"Y-m-d" }}
+  </div>
+      </div>
+      {% endfor %}
+
+{% endblock %}
+<!-- конец переопределения-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
