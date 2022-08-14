@@ -5,19 +5,22 @@ from .forms import NewsForm
 from django.urls import reverse_lazy
 
 from django.views.generic import ListView, DetailView, CreateView
+from .utils import MyMixin
 
 # Create your views here.
 
 
-class HomeNews(ListView):
+class HomeNews(ListView, MyMixin):
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
     #extra_context = {'title': 'Главная страница'}
+    mixin_prop = 'Hello world'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная страница'
+        context['mixin_prop'] = self.get_prop()
         return context
 
     def get_queryset(self):
