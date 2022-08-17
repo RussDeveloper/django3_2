@@ -1,0 +1,20 @@
+{% extends 'base.html' %}         <!-- Объявление, что будет использован шаблон base.html -->
+
+{% block title %}
+Тестовая страница :: {{ block.super }}
+{% endblock %}
+
+
+<!-- Переопределение блоков content и sitebar  для конкретной страницы-->
+{% block sitebar %}
+{% include 'inc/_sitebar.html' %}    <!-- Подключение списка категорий-->
+{% endblock %}
+
+{% block content %}
+
+{% for name in page_obj.object_list %}
+<p>{{ name }}</p>
+{% endfor %}
+
+{% endblock %}
+<!-- конец переопределения-->
