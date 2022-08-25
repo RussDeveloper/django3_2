@@ -6,8 +6,28 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, CreateView
 from .utils import MyMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 # Create your views here.
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно зарегистрированы')
+            return redirect('login')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = UserCreationForm()
+    context = {"form": form}
+    return render(request, 'news/register.html', context)
+
+def login(request):
+    return render(request, 'news/login.html')
 
 def test(request):
     objects = ['john1', 'paul2', 'george3', 'ringo4', 'john5', 'paul6', 'george7', 'ringo8']
@@ -16,6 +36,7 @@ def test(request):
     page_objects = paginator.get_page(page_num)
     context = {'page_obj': page_objects}
     return render(request, 'news/test.html', context)
+
 
 
 class HomeNews(ListView, MyMixin):

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}         <!-- Объявление, что будет использован шаблон base.html -->
+
+{% block title %}
+Добавление новости :: {{ block.super }}
+{% endblock %}
+
+
+<!-- Переопределение блоков content и sitebar  для конкретной страницы-->
+{% block sitebar %}
+{% include 'inc/_sitebar.html' %}    <!-- Подключение списка категорий-->
+{% endblock %}
+
+{% block content %}
+
+<h1> Логин </h1>
+
+
+
+
+
+{% endblock %}
+<!-- конец переопределения-->

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}         <!-- Объявление, что будет использован шаблон base.html -->
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+
+<!-- Переопределение блоков content и sitebar  для конкретной страницы-->
+{% block sitebar %}
+{% include 'inc/_sitebar.html' %}    <!-- Подключение списка категорий-->
+{% endblock %}
+
+{% block content %}
+
+<h1> Регистрация </h1>
+
+<form  method="post">
+   {% csrf_token %}              <!-- Токен защиты от взлома и подделки-->
+
+   {{ form.as_p}}
+   <button type="submit" class="btn btn-primary">Регистрация</button>
+
+</form>
+
+{% endblock %}
+<!-- конец переопределения-->
