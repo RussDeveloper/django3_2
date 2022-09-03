@@ -1,7 +1,7 @@
 {% extends 'base.html' %}         <!-- Объявление, что будет использован шаблон base.html -->
 
 {% block title %}
-Тестовая страница :: {{ block.super }}
+Обратная связь :: {{ block.super }}
 {% endblock %}
 
 
@@ -12,9 +12,14 @@
 
 {% block content %}
 
-{% for name in page_obj.object_list %}
-<p>{{ name }}</p>
-{% endfor %}
+<p>Обратная связь</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Send</button>
+
+</form>
 
 {% endblock %}
 <!-- конец переопределения-->
