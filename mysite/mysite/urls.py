@@ -24,8 +24,9 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('category/<int:category_id>', NewsByCategory.as_view(extra_context={'title': 'Какой-то тайтл'}), name='category'),
     path('', HomeNews.as_view(), name='home'),
-    path('test/', test, ),
+    path('contact/', contact, name='contact' ),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 
 if settings.DEBUG:   #маршрут только в отладочном режиме
